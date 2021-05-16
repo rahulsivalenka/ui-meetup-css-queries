@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "mdx-deck slides/deck.mdx",
-    "start:gatsby": "gatsby develop",
+    "start": "gatsby develop",
     "clean": "rm -rf .cache public",
     "prebuild": "npm run clean",
     "build": "gatsby build --prefix-paths",
