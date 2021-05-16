@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media Feature - Viewport Width</title>
+</head>
+
+<body>
+  <p>Resize to see layout adapt to viewport width changes</p>
+
+  <div class="items">
+
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+    <div class="item">4</div>
+    <div class="item">5</div>
+    <div class="item">6</div>
+    <div class="item">7</div>
+    <div class="item">8</div>
+    <div class="item">9</div>
+    <div class="item">10</div>
+    <div class="item">11</div>
+    <div class="item">12</div>
+    <div class="item">13</div>
+    <div class="item">14</div>
+    <div class="item">15</div>
+
+  </div>
+
+  <style>
+    body {
+      color: white;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .items {
+      display: flex;
+      flex-direction: row;
+
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .item {
+      width: 120px;
+      min-width: 120px;
+
+      color: black;
+      height: 60px;
+      display: grid;
+      place-content: center;
+      font-size: 2rem;
+      font-weight: 600;
+      border-radius: 8px;
+      background-color: indianred;
+    }
+
+    @media screen and (max-width: 420px) {
+      .items {
+        flex-direction: column;
+      }
+
+      .item {
+        width: 100%;
+      }
+    }
+  </style>
+
+</body>
+
+</html>
