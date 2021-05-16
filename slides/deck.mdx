@@ -1,0 +1,313 @@
+import { Link } from 'gatsby';
+import { nightOwl } from '@code-surfer/themes';
+import { themes, Appear } from 'mdx-deck';
+import { CodeSurfer, CodeSurferColumns, Step } from 'code-surfer';
+
+import './styles/overrides.css';
+import './styles/styles.css';
+
+export const theme = themes.notes;
+
+# CSS Queries
+
+UI Meetup - 17th May 2021
+
+By Phani Rahul Sivalenka
+
+---
+
+# Media Query
+
+---
+
+A way to apply CSS only when the browser and device environment matches a rule that we specify, for example "_viewport_ is wider than 480 pixels"
+
+---
+
+### Use cases
+
+- They are a key part of responsive web design
+
+- Can also be used to detect other things about the environment our site is running on, for example whether the user is using a touchscreen rather than a mouse
+
+---
+
+<CodeSurfer theme={nightOwl}>
+
+```css subtitle="Syntax looks like this"
+@media media-type and (media-feature-rule) {
+  /* CSS rules go here */
+}
+```
+
+```diff 1[8:18] subtitle="A media type, which tells the browser what kind of media this code is for (e.g. print, or screen)"
+
+```
+
+```diff 1[24:42] subtitle="A media expression, which is a rule, or test that must be passed for the contained CSS to be applied"
+
+```
+
+```diff 2 subtitle="A set of CSS rules that will be applied if the test passes and the media type is correct"
+
+```
+
+</CodeSurfer>
+
+---
+
+### Possible Media Types
+
+<div className="text-left margin-auto w-max-80p">
+
+- `print` — for paged material and for documents viewed on screen in print preview mode
+- `screen` — for color computer screens
+- `speech` — for screen readers or speech synthesizers
+- `all` — includes all media types
+
+</div>
+
+---
+
+# Media feature rules
+
+<div className="text-left margin-auto w-max-80p">
+
+- Viewport width and height
+- Orientation
+- Hover
+- [More here](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#media_features)
+
+</div>
+
+---
+
+## Viewport width and height
+
+---
+
+<CodeSurferColumns themes={[nightOwl, nightOwl]}>
+
+<Step>
+
+<iframe className="fixed resizable-iframe" src="/viewport-width.html" />
+
+```css
+.items {
+  display: flex;
+  flex-direction: row;
+  /* other styles */
+}
+
+.item {
+  width: 120px;
+  min-width: 120px;
+  /* other styles */
+}
+
+@media screen and (max-width: 420px) {
+  .items {
+    flex-direction: column;
+  }
+
+  .item {
+    width: 100%;
+  }
+}
+```
+
+</Step>
+
+<Step>
+
+<iframe className="fixed resizable-iframe" src="/viewport-width.html" />
+
+```diff 1:11 subtitle="when viewport width is greater than 420px"
+
+```
+
+</Step>
+
+<Step>
+
+<iframe className="fixed resizable-iframe" src="/viewport-width.html" />
+
+```diff 12:21 subtitle="when viewport width is less than or equal to 420px"
+
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+<CodeSurferColumns themes={[nightOwl, nightOwl]}>
+
+<Step>
+
+<iframe
+  className="fixed resizable-iframe"
+  src="/viewport-width-mobile-first.html"
+/>
+
+```css subtitle="Recommended to take mobile-first approach to RWD"
+.items {
+  display: flex;
+  flex-direction: column;
+  /* other styles */
+}
+
+.item {
+  width: 100%;
+  /* other styles */
+}
+
+@media screen and (min-width: 420px) {
+  .items {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .item {
+    width: 120px;
+    min-width: 120px;
+  }
+}
+```
+
+</Step>
+
+<Step>
+
+<iframe
+  className="fixed resizable-iframe"
+  src="/viewport-width-mobile-first.html"
+/>
+
+```diff 1:11 subtitle="first, when viewport width is less than 420px"
+
+```
+
+</Step>
+
+<Step>
+
+<iframe
+  className="fixed resizable-iframe"
+  src="/viewport-width-mobile-first.html"
+/>
+
+```diff 12:21 subtitle="then, when viewport width is greater than or equal to 420px"
+
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+Refer [MDN: Mobile first responsive design](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Media_queries#active_learning_mobile_first_responsive_design) for a walkthrough
+
+---
+
+# Media Query: Logical Operators
+
+---
+
+<CodeSurferColumns themes={[nightOwl, nightOwl]}>
+
+<Step>
+
+```css
+@media screen and (min-width: 30em) and (orientation: landscape) {
+  ...;
+}
+```
+
+<div className="plain-content">
+
+`and` — for combining multiple media features into a single media query
+
+</div>
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+<CodeSurferColumns themes={[nightOwl, nightOwl]}>
+
+<Step>
+
+```css
+@media not screen and (color), print and (color) {
+  ...;
+}
+```
+
+<div className="plain-content">
+
+`,` (or) — to combine multiple media queries into a single rule
+
+</div>
+
+</Step>
+
+<Step>
+
+```css
+@media (not (screen and (color))), (print and (color)) {
+  ...;
+}
+```
+
+<div className="plain-content">
+
+evaluates to
+
+</div>
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+<CodeSurferColumns themes={[nightOwl, nightOwl]}>
+
+<Step>
+
+```css
+@media not all and (monochrome) {
+  ...;
+}
+```
+
+<div className="plain-content">
+
+`not` — to negate an <span style={{ fontWeight: 'bold', fontStyle: 'italic', color: 'orange' }}>entire</span> media query
+
+</div>
+
+</Step>
+
+<Step>
+
+```css
+@media not (all and (monochrome)) {
+  ...;
+}
+```
+
+<div className="plain-content">
+
+evaluates to
+
+</div>
+
+</Step>
+
+</CodeSurferColumns>

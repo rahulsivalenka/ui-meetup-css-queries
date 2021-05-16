@@ -1,0 +1,37 @@
+.row {
+  display: flex;
+}
+
+.row .row-item:not(:last-child) {
+  margin-right: 24px;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.margin-auto {
+  margin: 0 auto;
+}
+
+.w-max-80p {
+  max-width: 80%;
+}
+
+.resizable-iframe {
+  min-width: 100px;
+  min-height: 100px;
+  height: 300px;
+  width: 300px;
+  resize: both;
+  overflow: auto;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.plain-content {
+  padding: 12px;
+  text-align: left;
+}
