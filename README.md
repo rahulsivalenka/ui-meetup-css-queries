@@ -1,2 +1,3 @@
-# mdx-deck-gh-pages-deployable
-Base project for mdx-deck with gh pages deployable setup
+# ui-meetup-css-queries
+
+This repo is a presentation on CSS Queries
