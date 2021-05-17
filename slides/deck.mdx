@@ -6,6 +6,8 @@ import { CodeSurfer, CodeSurferColumns, Step } from 'code-surfer';
 import './styles/overrides.css';
 import './styles/styles.css';
 
+import MediaQuerySyntax from './images/media-query-syntax.png';
+
 export const theme = themes.notes;
 
 # CSS Queries
@@ -63,19 +65,21 @@ A way to apply CSS only when the browser and device environment matches a rule t
 - `print` — for paged material and for documents viewed on screen in print preview mode
 - `screen` — for color computer screens
 - `speech` — for screen readers or speech synthesizers
-- `all` — includes all media types
+- `all` — includes all media types (default)
 
 </div>
 
 ---
 
-# Media feature rules
+# Common media feature rules
 
 <div className="text-left margin-auto w-max-80p">
 
 - Viewport width and height
 - Orientation
 - Hover
+- `prefers-color-scheme`
+- `prefers-reduced-motion`
 - [More here](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#media_features)
 
 </div>
@@ -212,6 +216,135 @@ Refer [MDN: Mobile first responsive design](https://developer.mozilla.org/en-US/
 
 ---
 
+<CodeSurferColumns themes={[nightOwl, nightOwl]}>
+
+<Step>
+
+```css
+@media (orientation: landscape) {
+  body {
+    color: rebeccapurple;
+  }
+}
+```
+
+<div className="plain-text">
+
+Allows us to test for portrait or landscape mode
+
+### Possible Values
+
+- `portrait`
+- `landscape`
+
+</div>
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+<CodeSurferColumns themes={[nightOwl, nightOwl]}>
+
+<Step>
+
+```css
+@media (hover: hover) {
+  body {
+    color: rebeccapurple;
+  }
+}
+```
+
+<div className="plain-text">
+
+To test if the user has the ability to hover over an element, which essentially means they are using some kind of pointing device; touchscreen and keyboard navigation do not hover.
+
+### Possible Values
+
+- `hover`
+- `none`
+
+</div>
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+<CodeSurferColumns themes={[nightOwl, nightOwl]}>
+
+<Step>
+
+```css
+body {
+  --bg-color: white;
+  --text-color: black;
+
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+@media screen and (prefers-color-scheme: light) {
+  body {
+    --bg-color: black;
+    --text-color: white;
+  }
+}
+```
+
+<div className="plain-text">
+
+To determine whether we serve a “dark” or a “light” theme based on the user's system or browser preferences.
+
+### Possible Values
+
+- `dark`
+- `light`
+
+</div>
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+<CodeSurferColumns themes={[nightOwl, nightOwl]}>
+
+<Step>
+
+```css
+@media screen and (prefers-reduced-motion: reduce) {
+  * {
+    /* Very short durations means JavaScript that 
+    relies on events still works */
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+```
+
+<div className="plain-text">
+
+To detect if the user has the reduced motion preference activated to minimize the amount of movements and animations.
+
+### Possible Values
+
+- `reduce`
+- `no-preference`
+
+</div>
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
 # Media Query: Logical Operators
 
 ---
@@ -311,3 +444,7 @@ evaluates to
 </Step>
 
 </CodeSurferColumns>
+
+---
+
+<img src={MediaQuerySyntax} alt="Media Query Syntax" />
