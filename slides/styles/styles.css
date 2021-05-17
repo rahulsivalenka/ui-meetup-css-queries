@@ -35,3 +35,17 @@
   padding: 12px;
   text-align: left;
 }
+
+.warning {
+  color: orange;
+  position: relative;
+  padding-left: 1em;
+}
+
+.warning:before {
+  content: '!!';
+  font-size: 2em;
+  position: absolute;
+  left: 0.25em;
+  transform: rotate3d(0.2, 1, 0.5, 345deg);
+}

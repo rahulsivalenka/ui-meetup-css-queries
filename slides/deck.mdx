@@ -1,14 +1,21 @@
 import { Link } from 'gatsby';
 import { nightOwl } from '@code-surfer/themes';
-import { themes, Appear } from 'mdx-deck';
+import { themes, Appear, Head } from 'mdx-deck';
 import { CodeSurfer, CodeSurferColumns, Step } from 'code-surfer';
 
 import './styles/overrides.css';
 import './styles/styles.css';
 
 import MediaQuerySyntax from './images/media-query-syntax.png';
+import ComparisonMediaQueryVsContainerQuery from './images/comparison-media-query-vs-container-query.jpg';
 
 export const theme = themes.notes;
+
+<Head>
+
+<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+</Head>
 
 # CSS Queries
 
@@ -22,15 +29,23 @@ By Phani Rahul Sivalenka
 
 ---
 
+<div style={{ padding: 16 }}>
+
 A way to apply CSS only when the browser and device environment matches a rule that we specify, for example "_viewport_ is wider than 480 pixels"
+
+</div>
 
 ---
 
 ### Use cases
 
+<div className="text-left margin-auto w-max-80p">
+
 - They are a key part of responsive web design
 
 - Can also be used to detect other things about the environment our site is running on, for example whether the user is using a touchscreen rather than a mouse
+
+</div>
 
 ---
 
@@ -447,4 +462,125 @@ evaluates to
 
 ---
 
+To review, the syntax of media query is as follows
+
 <img src={MediaQuerySyntax} alt="Media Query Syntax" />
+
+---
+
+# References
+
+<div className="text-left margin-auto w-max-80p">
+
+- [MDN: Beginner's guide to media queries](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Media_queries)
+- [CSS-Tricks: A complete guide on CSS Media Queries](https://css-tricks.com/a-complete-guide-to-css-media-queries/)
+
+</div>
+
+---
+
+# Container Query
+
+Experimental
+
+---
+
+While a media query is used to change the document layout based on the size of the viewport,
+
+a container query is used to change the layout of components based on the available width of their container.
+
+---
+
+<img
+  src={ComparisonMediaQueryVsContainerQuery}
+  alt="Media query vs Container query"
+  style={{ height: '100%' }}
+/>
+
+---
+
+<div className="warning">
+
+The CSS container queries are only supported in Chrome Canary under an experiment flag for now.
+
+</div>
+
+<picture>
+  <source
+    type="image/webp"
+    srcset="https://caniuse.bitsofco.de/image/css-container-queries.webp"
+  />
+  <source
+    type="image/png"
+    srcset="https://caniuse.bitsofco.de/image/css-container-queries.png"
+  />
+  <img
+    src="https://caniuse.bitsofco.de/image/css-container-queries.jpg"
+    alt="Data on support for the css-container-queries feature across the major browsers from caniuse.com"
+  />
+</picture>
+
+---
+
+<CodeSurfer theme={nightOwl}>
+
+```css title="Usage" subtitle="Usage might change as it is still experimental"
+.container {
+  /* to tell the browser to only repaint the affected area */
+  contain: layout inline-size;
+}
+
+.child {
+  /* default child styles */
+}
+
+@container (min-width: 400px) {
+  .child {
+    /* child styles when its container (.container) width
+    is greater than or equal to 400px */
+  }
+}
+```
+
+</CodeSurfer>
+
+---
+
+<p
+  class="codepen"
+  data-height="498"
+  data-theme-id="light"
+  data-default-tab="result"
+  data-user="shadeed"
+  data-slug-hash="ExZEEjZ"
+  style="height: 498px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
+  data-pen-title="Article - QC"
+>
+  <span>
+    See the Pen{' '}
+    <a href="https://codepen.io/shadeed/pen/ExZEEjZ">Article - QC</a> by Ahmad
+    Shadeed (<a href="https://codepen.io/shadeed">@shadeed</a>) on{' '}
+    <a href="https://codepen.io">CodePen</a>.
+  </span>
+</p>
+
+<div style={{fontSize: '16px'}}>
+
+Source: [Ahmad Shadeed: Say Hello To CSS Container Queries](https://ishadeed.com/article/say-hello-to-css-container-queries/)
+
+</div>
+
+---
+
+# References
+
+<div className="text-left margin-auto w-max-80p">
+
+- [Ahmad Shadeed: Say Hello To CSS Container Queries](https://ishadeed.com/article/say-hello-to-css-container-queries/)
+- [CSS Tricks: Say Hello to CSS Container Queries](https://css-tricks.com/say-hello-to-css-container-queries/)
+
+</div>
+
+---
+
+Thank You
